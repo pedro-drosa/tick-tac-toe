@@ -1,9 +1,15 @@
 // Dados Inicias
 let painting = {
-  a1: '', a2: '', a3: '',
-  b1: '', b2: '', b3: '',
-  c1: '', c2: '', c3: ''
-}
+  a1: '',
+  a2: '',
+  a3: '',
+  b1: '',
+  b2: '',
+  b3: '',
+  c1: '',
+  c2: '',
+  c3: '',
+};
 
 let player = '';
 let warning = '';
@@ -11,14 +17,14 @@ let playing = false;
 // Eventos
 document.querySelector('.reset').addEventListener('click', reset);
 
-document.querySelectorAll('.item').forEach((item) =>{
+document.querySelectorAll('.item').forEach((item) => {
   item.addEventListener('click', handleClickItem);
-})
+});
 // Funções
 
 function handleClickItem(event) {
   let item = event.target.getAttribute('data-item');
-  if(playing && painting[item] === '') {
+  if (playing && painting[item] === '') {
     painting[item] = player;
     renderPainting();
     togglePlayer();
@@ -55,20 +61,20 @@ function renderInfo() {
 }
 
 function togglePlayer() {
-  player = (player === 'x') ? 'o' : 'x';
+  player = player === 'x' ? 'o' : 'x';
   renderInfo();
 }
 
 function checkGame() {
   if (checkWinnerFor('x')) {
     warning = `O "x" venceu!`;
-    playing= false;
-  } else if(checkWinnerFor('o')) {
+    playing = false;
+  } else if (checkWinnerFor('o')) {
     warning = `O "o" venceu!`;
-    playing= false;
-  } else if(isFull()) {
+    playing = false;
+  } else if (isFull()) {
     warning = `Deu empate!`;
-    playing= false;
+    playing = false;
   }
 }
 
@@ -83,12 +89,12 @@ function checkWinnerFor(player) {
     'a3,b3,c3',
 
     'a1,b2,c3',
-    'a3,b2,c1'
+    'a3,b2,c1',
   ];
 
-  for(let i in pos) {
-    let pArray = pos[i].split(',') // ex: [a1,a2,a3]
-    let hasWon =  pArray.every( option => painting[option] === player);
+  for (let i in pos) {
+    let pArray = pos[i].split(','); // ex: [a1,a2,a3]
+    let hasWon = pArray.every((option) => painting[option] === player);
 
     if (hasWon) {
       return true;
@@ -99,8 +105,8 @@ function checkWinnerFor(player) {
 }
 
 function isFull() {
-  for( let i in painting) {
-    if(painting[i] === '') {
+  for (let i in painting) {
+    if (painting[i] === '') {
       return false;
     }
   }

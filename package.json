@@ -2,5 +2,9 @@
   "name": "tictactoe",
   "version": "1.0.0",
   "main": "script.js",
-  "license": "MIT"
+  "author": "pedro-drosa",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "2.4.0"
+  }
 }
